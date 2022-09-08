@@ -50,6 +50,7 @@ document.getElementById('appointment-form').addEventListener('submit', function 
     for (let i = 0; i < formFields.length; i++) {
         if (formFields[i].value === '') {
             allFields = false;
+            
             formFields[i].classList.add('error');
 
         } else {
@@ -70,23 +71,37 @@ document.getElementById('appointment-form').addEventListener('submit', function 
 document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const contactMessage = document.querySelector('.contact-message');
-    let formFields = document.getElementsByClassName('form-field');
+    let formFields = document.getElementsByClassName('form-field-contact');
     let allFields = false;
   
 
     for (let i = 0; i < formFields.length; i++) {
         if (formFields[i].value === '') {
             allFields = false;
+            
             formFields[i].classList.add('error');
-            contactMessage.classList.add('error');
-            contactMessage.innerText = 'Wypełnij wymagane pola';
+           
 
         } else {
             allFields = true;
-            formFields[i].classList.add('send');
+            console.log('warunek pola sa wypełnione');
+            formFields[i].classList.remove('error');
             contactMessage.classList.add('send');
-            contactMessage.innerText = 'Wysłano';
+            
+           
         }
+
     }
+    if (allFields === true) {
+        
+        contactMessage.classList.add("send")
+        contactMessage.innerText = "Wysłano"
+        contactMessage.classList.remove("error")
+    } else {
+        contactMessage.classList.add("error")
+        contactMessage.classList.remove("send")
+        contactMessage.innerText = "Wypełnij wymagane pola"
+    }
+
     
 })
